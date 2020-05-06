@@ -1,0 +1,63 @@
+body {
+	display: grid;
+	grid-template-areas:
+	'..  volume-up  ..'
+	'fr play-pause  ff'
+	'.. volume-down ..'
+	'subtitles subtitles subtitles'
+	;
+	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1em;
+
+	box-sizing: border-box;
+	margin: 0;
+	padding: 1em;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+#volume-up {
+	grid-area: volume-up;
+}
+
+#volume-down {
+	grid-area: volume-down;
+}
+
+#fr {
+	grid-area: fr;
+}
+
+#ff {
+	grid-area: ff;
+}
+
+#play, #pause {
+	grid-area: play-pause;
+}
+
+#turn-subtitles-on, #turn-subtitles-off {
+	grid-area: subtitles;
+}
+
+#volume-ctr, #play-pause-ctr, #accel-ctr, #subtitle-ctr {
+	display: contents;
+}
+
+button {
+	border: none;
+}
+
+@media (orientation: landscape) { button { font-size: 10vh; } }
+
+@media (orientation: portrait ) { button { font-size: 10vw; } }
+
+#play-pause-ctr.show-play > #pause,
+#play-pause-ctr.show-pause > #play,
+#subtitle-ctr.show-turn-on > #turn-subtitles-off,
+#subtitle-ctr.show-turn-off > #turn-subtitles-on
+{
+	display: none;
+}
