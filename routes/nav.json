@@ -1,0 +1,40 @@
+{
+	"primary_key": "page_id",
+	"pages": [
+		{
+			"nav_name": "Home",
+			"page_name": "Birds Ltd.",
+			"page_id": "index",
+			"page_path": "/"
+		},
+		{
+			"nav_name": "Your Cart",
+			"page_name": "Your Cart",
+			"page_id": "cart",
+			"page_path": "/cart"
+		},
+		{
+			"nav_name": "Manage Payment Methods",
+			"page_name": "Manage Payment Methods",
+			"page_id": "payment-methods",
+			"page_path": "/payment-methods"
+		},
+		{
+			"page_name": "Add Payment Method",
+			"page_id": "add-payment-method",
+			"page_path": "/payment-methods/add"
+		},
+		{
+			"nav_name": "Your Past Orders",
+			"page_name": "Your Past Orders",
+			"page_id": "orders",
+			"page_path": "/orders"
+		},
+		{
+			"nav_name": "Rebuttal",
+			"page_name": "Rebuttal",
+			"page_id": "rebuttal",
+			"page_path": "/rebuttal"
+		}
+	]
+}
