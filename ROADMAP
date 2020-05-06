@@ -1,3 +1,11 @@
-Stop
-Mute/Unmute
-Queue movie
+Housekeeping
+	Find a better name
+
+Functionality
+	Stop
+	Mute/Unmute
+	Queue movie
+	Improve selection of formats
+	Improve name-to-title conversion
+	api/mpv.js
+		Add stats to getStats()
