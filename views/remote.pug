@@ -1,0 +1,33 @@
+html(lang="en")
+	head
+		link(href="/css/remote.css", rel="stylesheet", type="text/css")
+		link(href="/css/dark.css", rel="stylesheet", type="text/css")
+		meta(id="mobile-address-bar-color", name="theme-color", content="#202020")
+		script(src="/js/remote.js")
+		script(src="/js/util.js")
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(name="apple-mobile-web-app-capable", content="yes")
+		meta(name="mobile-web-app-capable", content="yes")
+		link(href="/manifest.json", rel="manifest")
+	body
+		#volume-ctr
+			button#volume-up
+				| &plus;
+			button#volume-down
+				| &minus;
+		#play-pause-ctr.show-pause
+			button#play
+				| &#x25b6;
+			button#pause
+				| &#x23f8;
+		#accel-ctr
+			button#fr
+				| &#x23ea;
+			button#ff
+				| &#x23e9;
+		#subtitle-ctr.show-turn-on
+			button#turn-subtitles-on
+				| Turn subtitles on
+			button#turn-subtitles-off
+				| Turn subtitles off
