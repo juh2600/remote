@@ -9,3 +9,4 @@ Functionality
 	Improve name-to-title conversion
 	api/mpv.js
 		Add stats to getStats()
+		Reset speed

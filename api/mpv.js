@@ -2,8 +2,6 @@ let logger = require('logger').get('backend');
 
 let mpv = new (require('node-mpv'))();
 
-mpv.on('resumed', () => { mpv.speed(1); });
-
 module.exports = {
 	name: 'mpv',
 	object: mpv,
@@ -16,9 +14,9 @@ module.exports = {
 	unmute: function() { mpv.unmute(); },
 	toggleMute: function() { mpv.toggleMute(); },
 
-	play: function() { mpv.play(); },
-	pause: function() { mpv.pause(); },
-	togglePause: function() { mpv.togglePause(); },
+	play: function() { this.resetSpeed(); mpv.play(); },
+	pause: function() { this.resetSpeed(); mpv.pause(); },
+	togglePause: function() { this.resetSpeed(); mpv.togglePause(); },
 	stop: function() { mpv.stop(); },
 
 	// jump back: there's no true rewind; see https://github.com/mpv-player/mpv/issues/4000
@@ -26,6 +24,7 @@ module.exports = {
 	// if paused, jump ahead
 	// otherwise, speed up
 	ff: function() { mpv.multiplyProperty('speed', 2); },
+	resetSpeed: function() { mpv.speed(1); },
 
 	turnSubtitlesOn: function() { mpv.showSubtitles(); },
 	turnSubtitlesOff: function() { mpv.hideSubtitles(); },
