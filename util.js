@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const child_process = require('child_process');
+const logger = require('logger').get('util');
 
 // https://gist.github.com/victorsollozzo/4134793
 const findByExtension = (base, exts, files, result) => {
@@ -9,8 +10,14 @@ const findByExtension = (base, exts, files, result) => {
 
 	files.forEach((file) => {
 		var newbase = path.join(base,file)
-		if(fs.statSync(newbase).isDirectory()) result = findByExtension(newbase, exts, fs.readdirSync(newbase), result);
-		else exts.forEach((ext) => { if(file.substr(-1*(ext.length+1)) == '.' + ext) result.push(newbase); });
+		if(fs.statSync(newbase).isDirectory())
+			try {
+				result = findByExtension(newbase, exts, fs.readdirSync(newbase), result);
+			} catch(err) {
+				logger.error(err);
+			}
+		else
+			exts.forEach((ext) => { if(file.substr(-1*(ext.length+1)) == '.' + ext) result.push(newbase); });
 	});
 	return result;
 };
