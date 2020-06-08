@@ -23,15 +23,25 @@ const findByExtension = (base, exts, files, result) => {
 };
 
 const convertPathToTitle = (uri) => {
-	return uri.split('/').pop().split('.').filter((token) => {
+	let name = uri.split('/').pop().split(/[._-]/);
+	name.pop();
+	name = name.filter((token) => {
 		out = true;
 		out &= !/1080/.test(token);
 		out &= !/BluRay/i.test(token);
-		out &= !/x\d{3}/i.test(token);
+		out &= !/^x?\d{3}$/i.test(token);
 		out &= !/yify/i.test(token);
-		out &= !/mp4/i.test(token);
+		out &= !/yts/i.test(token);
+		out &= !/]/i.test(token);
+		out &= !/AAC/i.test(token);
+		out &= !/(WEB|Br)Rip/i.test(token);
 		return out;
-	}).join(' ');
+	});
+	if(/^\d{4}$/.test(name[name.length-1])) {
+		name.unshift(name.pop());
+		name[0] = `(${name[0]})`;
+	}
+	return name.join(' ');
 };
 
 // https://stackoverflow.com/questions/32210057/how-to-read-metadata-from-mp4-using-mp4-js-node-module#comment52337180_32210299
@@ -40,11 +50,25 @@ const findMovies = (dir, exts) => {
 	let movies = [];
 
 	paths.forEach((path) => {
+		path = path.split(dir)[1];
+		let title = convertPathToTitle(path);
+		let year = /\d{4}/.test(title) ? ~~(title.match(/\d{4}/))[0] : 0 ;
 		let movie = {
-			path: path.split(dir)[1],
-			title: convertPathToTitle(path)
+			path,
+			title,
+			year
 		};
 		movies.push(movie);
+	});
+
+	movies.sort((a, b) => {
+		let left = a.year, right = b.year;
+		if(left && right) {
+			if(left < right) return -1;
+			if(left > right) return  1;
+		}
+		// give up lol
+		return 0;
 	});
 
 	return movies;

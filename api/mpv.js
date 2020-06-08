@@ -5,11 +5,10 @@ let mpv = new (require('node-mpv'))();
 module.exports = {
 	name: 'mpv',
 	object: mpv,
-	SEEK_INCREMENT: 10, // seconds
 
 	setVolume: function(newVolume) { mpv.volume(newVolume); },
-	volumeUp: function() { mpv.adjustVolume(5); },
-	volumeDown: function() { mpv.adjustVolume(-5); },
+	volumeUp: function() { mpv.unmute(); mpv.adjustVolume(5); },
+	volumeDown: function() { mpv.unmute(); mpv.adjustVolume(-5); },
 	mute: function() { mpv.mute(); },
 	unmute: function() { mpv.unmute(); },
 	toggleMute: function() { mpv.toggleMute(); },
@@ -19,10 +18,14 @@ module.exports = {
 	togglePause: function() { this.resetSpeed(); mpv.togglePause(); },
 	stop: function() { mpv.stop(); },
 
+	// seek
+	seek_seconds: function(s) { mpv.seek(s); },
+	seek_minutes: function(m) { mpv.seek(m*60); },
+	seek_hours: function(h) { mpv.seek(h*60*60); },
+
+	// fast forward/reverse
 	// jump back: there's no true rewind; see https://github.com/mpv-player/mpv/issues/4000
-	fr: function() { mpv.seek(-this.SEEK_INCREMENT); },
-	// if paused, jump ahead
-	// otherwise, speed up
+	fr: function() { this.seek_seconds(-10); },
 	ff: function() { mpv.multiplyProperty('speed', 2); },
 	resetSpeed: function() { mpv.speed(1); },
 

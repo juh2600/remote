@@ -3,7 +3,7 @@ body {
 	color: #eeeeee;
 }
 
-button {
+button, a {
 	background-color: #404040;
 	color: #eeeeee;
 }

@@ -11,22 +11,36 @@ html(lang="en")
 		meta(name="mobile-web-app-capable", content="yes")
 		link(href="/manifest.json", rel="manifest")
 	body
+		a#finder(href="/")
+			| &#x1F50D;
 		#volume-ctr
 			button#volume-up
-				| &plus;
+				| &#x1F50A;
 			button#volume-down
-				| &minus;
+				| &#x1F509;
+			button#volume-toggle-mute
+				| &#x1F507;
 		#play-pause-ctr.show-pause
 			button#play
 				| &#x25b6;
 			button#pause
 				| &#x23f8;
+		button#stop
+			| &#x23f9;
 		#accel-ctr
-			button#fr
+			button#fr-1h
 				| &#x23ea;
-			button#ff
+			button#fr-10m
+				| &#x23ea;
+			button#fr-30s
+				| &#x23ea;
+			button#ff-30s
 				| &#x23e9;
-		#subtitle-ctr.show-turn-on
+			button#ff-10m
+				| &#x23e9;
+			button#ff-1h
+				| &#x23e9;
+		#subtitle-ctr.show-turn-off
 			button#turn-subtitles-on
 				| Turn subtitles on
 			button#turn-subtitles-off

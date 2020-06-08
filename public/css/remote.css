@@ -1,13 +1,13 @@
 body {
 	display: grid;
 	grid-template-areas:
-	'..  volume-up  ..'
-	'fr play-pause  ff'
-	'.. volume-down ..'
-	'subtitles subtitles subtitles'
+	'finder      finder      play-pause  play-pause  stop        stop       '
+	'toggle-mute toggle-mute volume-down volume-down volume-up   volume-up  '
+	'fr-1h       fr-10m      fr-30s      ff-30s      ff-10m      ff-1h      '
+	'subtitles   subtitles   subtitles   subtitles   subtitles   subtitles  '
 	;
-	grid-template-rows: repeat(4, 1fr);
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr 1fr 15vh 1fr;
+	grid-auto-columns: 1fr;
 	grid-gap: 1em;
 
 	box-sizing: border-box;
@@ -16,6 +16,7 @@ body {
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
+	font-family: sans-serif;
 }
 
 #volume-up {
@@ -26,13 +27,16 @@ body {
 	grid-area: volume-down;
 }
 
-#fr {
-	grid-area: fr;
+#volume-toggle-mute {
+	grid-area: toggle-mute;
 }
 
-#ff {
-	grid-area: ff;
-}
+#fr-1h { grid-area: fr-1h; }
+#fr-10m { grid-area: fr-10m; }
+#fr-30s { grid-area: fr-30s; }
+#ff-30s { grid-area: ff-30s; }
+#ff-10m { grid-area: ff-10m; }
+#ff-1h { grid-area: ff-1h; }
 
 #play, #pause {
 	grid-area: play-pause;
@@ -46,13 +50,19 @@ body {
 	display: contents;
 }
 
-button {
+button, a {
 	border: none;
 }
 
-@media (orientation: landscape) { button { font-size: 10vh; } }
+@media (orientation: landscape) {
+	button, a { font-size: 10vh; }
+	#accel-ctr > button { font-size: 6vh; }
+}
 
-@media (orientation: portrait ) { button { font-size: 10vw; } }
+@media (orientation: portrait ) {
+	button, a { font-size: 10vw; }
+	#accel-ctr > button { font-size: 6vw; }
+}
 
 #play-pause-ctr.show-play > #pause,
 #play-pause-ctr.show-pause > #play,
@@ -60,4 +70,17 @@ button {
 #subtitle-ctr.show-turn-off > #turn-subtitles-on
 {
 	display: none;
+}
+
+#finder {
+	grid-area: finder;
+	text-decoration: none;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#stop {
+	grid-area: stop;
 }
