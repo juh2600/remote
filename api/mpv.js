@@ -1,4 +1,4 @@
-let logger = require('logger').get('backend');
+let logger = require('logger').get('backend::mpv');
 
 let mpv = new (require('node-mpv'))();
 

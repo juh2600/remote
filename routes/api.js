@@ -1,4 +1,4 @@
-const logger = require('logger').get('frontend');
+const logger = require('logger').get('api');
 
 const { respond } = require('./util');
 
