@@ -95,6 +95,11 @@ const turnSubtitlesOff = (req, res) => {
 	respond(204, 'Turned subtitles off', res);
 };
 
+const cycleSubtitles = (req, res) => {
+	player.cycleSubtitles();
+	respond(204, 'Cycled subtitles', res);
+};
+
 
 const routes = [
 	{
@@ -197,6 +202,12 @@ const routes = [
 		uri: '/subtitles/off',
 		methods: ['get', 'post'],
 		handler: turnSubtitlesOff
+	},
+
+	{
+		uri: '/subtitles/cycle',
+		methods: ['get', 'post'],
+		handler: cycleSubtitles
 	},
 ];
 
