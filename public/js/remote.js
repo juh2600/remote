@@ -15,6 +15,7 @@ const Remote = {
 		ff_1h: null,
 		turn_subtitles_on: null,
 		turn_subtitles_off: null,
+		cycle_subtitles: null,
 		subtitle_ctr: null
 	},
 
@@ -89,6 +90,10 @@ const Remote = {
 		turnSubtitlesOff: function() {
 			console.log('Turning subtitles off');
 			this.call('/subtitles/off');
+		},
+		cycleSubtitles: function() {
+			console.log('Cycling subtitles');
+			this.call('/subtitles/cycle');
 		}
 	},
 
@@ -108,6 +113,7 @@ const Remote = {
 		this.ui.ff_1h = document.getElementById('ff-1h');
 		this.ui.turn_subtitles_on = document.getElementById('turn-subtitles-on');
 		this.ui.turn_subtitles_off = document.getElementById('turn-subtitles-off');
+		this.ui.cycle_subtitles = document.getElementById('cycle-subtitles');
 		this.ui.subtitle_ctr = document.getElementById('subtitle-ctr');
 	},
 
@@ -126,12 +132,14 @@ const Remote = {
 		this.ui.ff_1h             .addEventListener('click', (evt) => { this.api.seek_hours(1); });
 		this.ui.turn_subtitles_on .addEventListener('click', (evt) => { this.api.turnSubtitlesOn(); });
 		this.ui.turn_subtitles_off.addEventListener('click', (evt) => { this.api.turnSubtitlesOff(); });
+		this.ui.cycle_subtitles   .addEventListener('click', (evt) => { this.api.cycleSubtitles(); });
 		
 		// Toggle visibility of buttons that share space on the screen
 		this.ui.play_pause_ctr.addEventListener('click', (evt) => {
 			Util.toggleClasses(this.ui.play_pause_ctr, 'show-play', 'show-pause');
 		});
-		this.ui.subtitle_ctr.addEventListener('click', (evt) => {
+		for (let subtitle_toggle of ['on', 'off'])
+		this.ui['turn_subtitles_' + subtitle_toggle].addEventListener('click', (evt) => {
 			Util.toggleClasses(this.ui.subtitle_ctr, 'show-turn-on', 'show-turn-off');
 		});
 	},

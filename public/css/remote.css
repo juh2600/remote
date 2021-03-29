@@ -1,10 +1,10 @@
 body {
 	display: grid;
 	grid-template-areas:
-	'finder      finder      play-pause  play-pause  stop        stop       '
-	'toggle-mute toggle-mute volume-down volume-down volume-up   volume-up  '
-	'fr-1h       fr-10m      fr-30s      ff-30s      ff-10m      ff-1h      '
-	'subtitles   subtitles   subtitles   subtitles   subtitles   subtitles  '
+	'finder      finder      play-pause  play-pause  stop              stop             '
+	'toggle-mute toggle-mute volume-down volume-down volume-up         volume-up        '
+	'fr-1h       fr-10m      fr-30s      ff-30s      ff-10m            ff-1h            '
+	'subtitles   subtitles   subtitles   subtitles   cycle-subtitles   cycle-subtitles  '
 	;
 	grid-template-rows: 1fr 1fr 15vh 1fr;
 	grid-auto-columns: 1fr;
@@ -44,6 +44,10 @@ body {
 
 #turn-subtitles-on, #turn-subtitles-off {
 	grid-area: subtitles;
+}
+
+#cycle-subtitles {
+	grid-area: cycle-subtitles;
 }
 
 #volume-ctr, #play-pause-ctr, #accel-ctr, #subtitle-ctr {

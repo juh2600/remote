@@ -31,6 +31,7 @@ module.exports = {
 
 	turnSubtitlesOn: function() { mpv.showSubtitles(); },
 	turnSubtitlesOff: function() { mpv.hideSubtitles(); },
+	cycleSubtitles: function() { mpv.cycleSubtitles(); },
 
 	addToQueue: function(uri) {
 		mpv.load(uri, 'append-play');
