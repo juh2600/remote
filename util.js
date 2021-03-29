@@ -24,6 +24,7 @@ const findByExtension = (base, exts, files, result) => {
 
 const convertPathToTitle = (uri) => {
 	let name = uri.split('/').pop().split(/[._-]/);
+	return name.join(' '); // anime weird
 	name.pop();
 	name = name.filter((token) => {
 		out = true;
