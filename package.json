@@ -13,7 +13,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "logger": "github:josephreed2600/logger#master",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "node-mpv": "^1.5.0",
     "pug": "^2.0.4"
   }
